@@ -236,7 +236,7 @@ function CarDetail({ cars }) {
       <main className="main-content">
         <header className="detail-header">
           <div>
-            <button className="back-button" onClick={() => window.history.back()}>
+            <button className="back-button" onClick={() => window.location.href = '/' }>
               <IoMdArrowBack className="back-icon" />
               Back
             </button>

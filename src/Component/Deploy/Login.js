@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [msg, setMsg] = useState('');
-
-  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent the default form submission and use JS to handle the submission
@@ -37,7 +34,7 @@ function Login() {
           return;
         }
         // window.history.back();
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Add a 2-second delay
+        // await new Promise(resolve => setTimeout(resolve, 2000));
         window.location.href = document.referrer; 
         
       } else {

@@ -139,7 +139,7 @@ function FavoriteCars({ cars }) {
       <div className="main-content">
         <header className="detail-header">
           <div>
-            <button className="back-button" onClick={() => window.history.back()}>
+            <button className="back-button" onClick={() => window.location.href = document.referrer}>
               <IoMdArrowBack className="back-icon" />
               Back
             </button>
