@@ -17,7 +17,7 @@ function Login() {
 
     try {
       // Send POST request with the username and password to the backend
-      const response = await axios.post('http://18.224.62.233:8080/api/loggn', {
+      const response = await axios.post('http://3.15.198.73:8080/api/loggn', {
         username: username,
         password: password
       }, {

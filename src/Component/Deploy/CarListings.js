@@ -48,7 +48,7 @@ function CarListings({ cars }) {
 
   useEffect(() => {
     
-    axios.get("http://18.224.62.233:8080/api/loggn", { withCredentials: true })
+    axios.get("http://3.15.198.73:8080/api/loggn", { withCredentials: true })
       .then(response => {
         console.log(2, response.data);
         if (response.data.status === "success") {
@@ -68,7 +68,7 @@ function CarListings({ cars }) {
   };
 
   const handleLogout = () => {
-    axios.get("http://18.224.62.233:8080/api/loggout", { withCredentials: true})
+    axios.get("http://3.15.198.73:8080/api/loggout", { withCredentials: true})
       .then(response => {
         if (response.data.status === "success") {
           setIsLoggedIn(false);

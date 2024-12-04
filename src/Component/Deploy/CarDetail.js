@@ -43,7 +43,7 @@ function CarDetail({ cars }) {
   }, [cars, vin]);
 
   useEffect(() => {
-    axios.get("http://18.224.62.233:8080/api/loggn", { withCredentials: true })
+    axios.get("http://3.15.198.73:8080/api/loggn", { withCredentials: true })
       .then(response => {
         if (response.data.status === "success") {
           setIsLoggedIn(true);
@@ -62,7 +62,7 @@ function CarDetail({ cars }) {
   };
 
   const handleLogout = () => {
-    axios.get("http://18.224.62.233:8080/api/loggout", { withCredentials: true})
+    axios.get("http://3.15.198.73:8080/api/loggout", { withCredentials: true})
       .then(response => {
         if (response.data.status === "success") {
           setIsLoggedIn(false);
@@ -78,7 +78,7 @@ function CarDetail({ cars }) {
   const { data: favorites, isLoading, refetch } = useQuery({
     queryKey: ['favorites'],
     queryFn: async () => {
-      const response = await axios.get("http://18.224.62.233:8080/api/favorites", {
+      const response = await axios.get("http://3.15.198.73:8080/api/favorites", {
         withCredentials: true
       });
       return response.data.favorites;
@@ -90,7 +90,7 @@ function CarDetail({ cars }) {
 
   const addFavoriteMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("http://18.224.62.233:8080/api/favorites",
+      const response = await axios.post("http://3.15.198.73:8080/api/favorites",
         {vin: car.VIN},
         {withCredentials: true}
       );
@@ -104,7 +104,7 @@ function CarDetail({ cars }) {
 
   const removeFavoriteMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.delete("http://18.224.62.233:8080/api/favorites", {
+      const response = await axios.delete("http://3.15.198.73:8080/api/favorites", {
         data: {vin: car.VIN},
         withCredentials: true
       });
