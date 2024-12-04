@@ -1,0 +1,36 @@
+.favorite-cars-layout {
+    display: grid;
+    /* grid-template-columns: 250px 1fr; */
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 0 80px;
+  }
+  
+  .main-content {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+
+  .img-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .favorite-car-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px; /* Distance from the top edge */
+    left: 10px; /* Distance from the left edge */
+    z-index: 10; /* Ensures the button is above the image */
+    background-color: white; /* Example button color */
+    color: white;
+    border: none;
+    padding: 2px 0px;
+    cursor: pointer;
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Vertically centers the star */
+    justify-content: center; /* Horizontally centers the star */
+  }
