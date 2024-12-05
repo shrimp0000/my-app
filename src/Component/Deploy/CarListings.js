@@ -6,18 +6,10 @@ import axios from "axios";
 import { IoMdArrowBack } from "react-icons/io";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GrFormNextLink } from "react-icons/gr";
+import { GrFormPreviousLink } from "react-icons/gr";
 
-const CAR_MAKES = [
-  "Abarth", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti",
-  "Cadillac", "Chevrolet", "Chrysler", "Citroën", "Dacia", "Daewoo", "Daihatsu",
-  "Dodge", "Donkervoort", "DS", "Ferrari", "Fiat", "Fisker", "Ford", "Honda",
-  "Hummer", "Hyundai", "Infiniti", "Iveco", "Jaguar", "Jeep", "Kia", "KTM",
-  "Lada", "Lamborghini", "Lancia", "Land Rover", "Landwind", "Lexus", "Lotus",
-  "Maserati", "Maybach", "Mazda", "McLaren", "Mercedes-Benz", "MG", "Mini",
-  "Mitsubishi", "Morgan", "Nissan", "Opel", "Peugeot", "Porsche", "Renault",
-  "Rolls-Royce", "Rover", "Saab", "Seat", "Skoda", "Smart", "SsangYong",
-  "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen", "Volvo"
-];
+CAR_MAKES = ['Acura', 'Audi', 'BMW', 'Buick', 'Cadillac', 'Chevrolet', 'Chrysler', 'Dodge', 'Ford', 'Genesis', 'GMC', 'Honda', 'Hyundai', 'INFINITI', 'Jaguar', 'Jeep', 'Kia', 'Land Rover', 'Lexus', 'Lincoln', 'Mazda', 'Mercedes-Benz', 'MINI', 'Mitsubishi', 'Nissan', 'Porsche', 'RAM', 'Subaru', 'Tesla', 'Toyota', 'Volkswagen', 'Volvo', 'AC', 'Alfa Romeo', 'Am General', 'American Motors', 'Aston Martin', 'Austin', 'Austin-Healey', 'Avanti Motors', 'Bentley', 'Bremen', 'Bricklin', 'Bugatti', 'Citroen', 'Cord', 'Datsun', 'Delahaye', 'Delorean', 'Desoto', 'DeTomaso', 'Eagle', 'Edsel', 'Excalibur', 'Facel-Vega', 'Ferrari', 'FIAT', 'Fisker', 'GAZ', 'Geo', 'Hudson', 'Hummer', 'INEOS', 'International', 'Isuzu', 'Jensen', 'Kaiser', 'Karma', 'Koenigsegg', 'Lamborghini', 'Lancia', 'Lotus', 'Lucid', 'Maserati', 'Maybach', 'McLaren', 'Mercury', 'MG', 'Nash', 'Oldsmobile', 'Packard', 'Pagani', 'Panoz', 'Plymouth', 'Polestar', 'Pontiac', 'Rambler', 'Renault', 'Rivian', 'Rolls-Royce', 'Saab', 'Saturn', 'Scion', 'smart', 'Studebaker', 'Sunbeam', 'Suzuki', 'Triumph', 'VinFast', 'Willys'];
 
 const paginate = (array, pageSize, pageNumber) => {
   return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
@@ -241,17 +233,62 @@ function CarListings({ cars }) {
         ))}
       </div>
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="pagination-button"
+          disabled={currentPage === 1}
+          aria-label="Go to previous page"
+        >
+          <GrFormPreviousLink />
+        </button>
+        {Array.from({ length: Math.min(5, totalPages) }, (_, index) => {
+          const pageStart = Math.max(
+            1,
+            Math.min(currentPage - Math.floor(5 / 2), totalPages - 4)
+          );
+          const page = pageStart + index;
+
+          return (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`pagination-button ${currentPage === page ? 'active' : ''}`}
+              aria-label={`Go to page ${page}`}
+              aria-current={currentPage === page ? 'page' : undefined}
+            >
+              {page}
+            </button>
+          );
+        })}
+
+        {/* Dots if necessary */}
+        {totalPages > 5 && currentPage + 2 < totalPages - 1 && (
+          <span className="pagination-dots" aria-hidden="true">
+            ...
+          </span>
+        )}
+
+        {/* Last page index */}
+        {totalPages > 5 && (
           <button
-            key={page}
-            onClick={() => handlePageChange(page)}
-            className={`pagination-button ${currentPage === page ? 'active' : ''}`}
-            aria-label={`Go to page ${page}`}
-            aria-current={currentPage === page ? 'page' : undefined}
+            onClick={() => handlePageChange(totalPages)}
+            className={`pagination-button ${
+              currentPage === totalPages ? 'active' : ''
+            }`}
+            aria-label={`Go to page ${totalPages}`}
+            aria-current={currentPage === totalPages ? 'page' : undefined}
           >
-            {page}
+            {totalPages}
           </button>
-        ))}
+        )}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="pagination-button"
+          disabled={currentPage === totalPages}
+          aria-label="Go to next page"
+        >
+          <GrFormNextLink />
+        </button>
       </div>
     </div>
   );
