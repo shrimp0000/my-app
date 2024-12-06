@@ -248,6 +248,8 @@ function CarListings({ cars }) {
           );
           const page = pageStart + index;
 
+          if (page === totalPages) return null;
+
           return (
             <button
               key={page}
