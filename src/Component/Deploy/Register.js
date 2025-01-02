@@ -13,7 +13,7 @@ function Register() {
 
     try {
       // Send POST request with the username and password to the backend
-      const response = await axios.post('http://3.15.198.73:8080/api/loggn/register', {
+      const response = await axios.post('http://3.145.83.67:8080/api/loggn/register', {
         username: username,
         password: password
       }, {

@@ -52,7 +52,7 @@ function FavoriteCars({ cars }) {
 
   const deleteFavCar = async (VIN) => {
     try {
-      const response = await axios.delete("http://3.15.198.73:8080/api/favorites",{
+      const response = await axios.delete("http://3.145.83.67:8080/api/favorites",{
         headers: {
           "Content-Type": "application/json",
         },
@@ -71,7 +71,7 @@ function FavoriteCars({ cars }) {
 
   const fetchFavCars = async () => {
     try {
-      const response = await axios.get("http://3.15.198.73:8080/api/favorites", {
+      const response = await axios.get("http://3.145.83.67:8080/api/favorites", {
         withCredentials: true
       });
       if (response.status === 200) {

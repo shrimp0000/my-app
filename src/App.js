@@ -67,7 +67,7 @@ function App() {
   
   const fetchCarData = async () => {
     try {
-      const response = await axios.get("http://3.15.198.73:8080/api/cars_data");
+      const response = await axios.get("http://3.145.83.67:8080/api/cars_data");
       if (response.status === 200) {
         setCarData(response.data);
       } else {
